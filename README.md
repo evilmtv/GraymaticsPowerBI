@@ -42,9 +42,17 @@ python -m pip install -U imageio
 python -m pip install -U --no-dependencies heatmappy
 ```
 
+### Cleanup
+Ensure command prompt in adminstrator
+```bash
+conda clean --all  # Optional, will save alot of hard disk space
+```
+
 ### Readings
 - https://github.com/LumenResearch/heatmappy
 - https://pypi.python.org/pypi/heatmappy
 - https://stackoverflow.com/questions/12759761/python-pip-force-install-ignoring-dependencies
 - https://stackoverflow.com/questions/39060669/python-matplotlib-install-issue-on-windows-7-for-freetype-png-packages/39060865
 - https://github.com/python-pillow/Pillow/issues/2945
+
+## Testing
