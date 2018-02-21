@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""
+'''
 Heatmap generator from json and picture
 
-Version: v1.0.0 (tested on Python 3.6.4)
+Version: v1.0.1 (tested on Python 3.6.4)
 Developed By: Lim Jun Hao
 Company: Graymatics Inc
-"""
+'''
 
 import sys
 from tkinter.filedialog import askopenfilename
@@ -26,14 +26,18 @@ with open(filename) as temp:
     newdata = temp.read()
 
 data = json.loads(newdata)
-coord_list = []
+coord_img_list = []
+coord_vid_list = []
 for key, value in data.items():
-    coord_pair = (float(value.pop("x_coord", None)), float(value.pop("y_coord", None)))
-    coord_list.append(coord_pair)
+    x_coord = float(value.pop('x_coord', None))
+    y_coord = float(value.pop('y_coord', None))
+    coord_pair = (x_coord, y_coord)
+    coord_triple = (x_coord, y_coord, float(value.pop('timestamp', None)) * 1000)
+    coord_img_list.append(coord_pair)
 
 example_img_path = 'test.jpg'
 example_img = Image.open(example_img_path)
 
-heatmapper = Heatmapper()
-heatmap = heatmapper.heatmap_on_img(coord_list, example_img)
 heatmap.save('heatmapnottest.png')
+heatmapper = Heatmapper(point_diameter=40, point_strength=0.1)
+heatmap = heatmapper.heatmap_on_img(coord_img_list, example_img)
